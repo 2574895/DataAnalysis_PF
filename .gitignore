@@ -1,0 +1,112 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Data Files
+*.csv
+*.json
+*.jsonl
+data/
+raw_data/
+processed_data/
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.pkl
+*.pickle
+
+# Analysis Results
+results/
+output/
+plots/
+charts/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# Logs and Temporary Files
+logs/
+temp/
+tmp/
+*.tmp
+*.temp
+
+# API Keys and Secrets
+.env
+.env.local
+.env.production
+.env.staging
+secrets.json
+config/secrets.py
+*.key
+*.pem
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Package directories
+node_modules/
+__pycache__/
+*.egg-info/
+
+# Distribution
+dist/
+build/
+*.egg
+*.whl
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Documentation
+docs/_build/
+*.pdf
+*.docx
