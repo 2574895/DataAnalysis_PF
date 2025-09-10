@@ -62,7 +62,7 @@ results/
 output/
 plots/
 charts/
-*.png
+# *.png  # Keep PNG files for portfolio charts
 *.jpg
 *.jpeg
 *.svg
