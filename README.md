@@ -133,18 +133,27 @@ graph TD
 
     C --> H[AdvancedCorrelationAnalyzer: 상관관계 분석]
     H --> I[calculate_correlations: 상관관계 계산]
-    I --> J[create_correlation_dashboard: 고급 차트 생성]
 
-    J --> K[correlation_learning_patterns.png<br/>4개 서브차트 생성]
+    I --> M[상관관계 매트릭스 생성]
+    I --> N[시간대별 패턴 분석]
+    I --> O[요일별 패턴 분석]
+    I --> P[강도 분포 분석]
+
+    M --> Q[히트맵 차트 생성]
+    N --> R[시간대별 선형 차트 생성]
+    O --> S[요일별 막대 차트 생성]
+    P --> T[강도 분포 차트 생성]
+
+    Q --> J[create_correlation_dashboard: 4개 차트 통합]
+    R --> J
+    S --> J
+    T --> J
+
+    J --> K[correlation_learning_patterns.png<br/>1개 파일에 4개 서브차트]
 
     F --> L[총 3개 PNG 파일<br/>12개 분석 차트]
     G --> L
     K --> L
-
-    I --> M[상관관계 매트릭스]
-    I --> N[시간대별 패턴 분석]
-    I --> O[요일별 패턴 분석]
-    I --> P[강도 분포 분석]
 ```
 
 
