@@ -20,15 +20,70 @@ Apple Developer Academy 포트폴리오용 개인화된 학습 패턴 상관관�
 
 ## 📊 생성되는 차트
 
-### 📈 Learning Pattern Correlation Analysis (4개 차트)
+### 📈 생성되는 차트 설명 (총 12개 분석 차트)
 
-1. **Learning Variables Correlation Matrix**: 학습에 영향을 미치는 주요 변수들(학습 복잡도, 표현 길이, 질문 깊이, 시간대) 간의 상관관계를 히트맵으로 보여줘서, 어떤 요소들이 함께 변하는지 한눈에 파악할 수 있게 해줍니다.
+#### 1. Personalized Learning Analysis Dashboard (4개 차트)
+1. **Hourly Efficiency**: 하루 중 언제 학습 효율이 가장 좋은지 알려줘서, 중요한 공부 시간을 가장 효과적인 시간대에 배치할 수 있게 해줍니다.
+2. **Learning Growth Trajectory**: 전체 학습 여정을 한눈에 보여줘서, 처음보다 얼마나 성장했는지 확인하고 꾸준히 나아가는 자신감을 줄 수 있게 해줍니다.
+3. **Main Topics**: 내가 가장 많이 공부한 분야를 보여줘서, 자신의 관심사와 강점을 파악하고 미래 학습 방향을 정할 때 도움이 됩니다.
+4. **Weekly Patterns**: 요일별 학습 스타일을 보여줘서, 주중에 효율적인 학습 습관을 들이고 주말에 어떻게 휴식과 복습을 균형 있게 할지 계획할 수 있게 해줍니다.
 
-2. **Hourly Learning Pattern Correlation Changes**: 하루 중 시간대별로 표현 길이와 질문 깊이 간의 상관관계가 어떻게 변하는지 추적해서, 최적의 학습 시간대와 패턴 변화를 분석할 수 있게 해줍니다.
+#### 2. Question Level Evolution Analysis (4개 차트)
+5. **Daily Question Depth Trend**: 하루하루 학습의 깊이가 어떻게 변하는지 보여줘서, 최근에 너무 쉬운 질문만 하는지 아니면 너무 어려운 질문에 매달리는지 스스로 점검할 수 있게 해줍니다.
+6. **Weekly Question Depth Evolution**: 일주일 단위로 학습 난이도가 어떻게 발전하는지 추적해서, 주말에 복습하거나 다음 주 계획을 세울 때 참고할 수 있게 해줍니다.
+7. **Question Categories Over Time**: 쉬운/중간/어려운 질문이 시간에 따라 어떻게 바뀌었는지 보여줘서, 균형 잡힌 학습을 유지하고 있는지 확인할 수 있게 해줍니다.
+8. **Monthly Question Level Progression**: 한 달에 한 달 학습 수준이 얼마나 성장했는지 보여줘서, 장기적인 발전을 실감하고 동기부여를 유지할 수 있게 해줍니다.
 
-3. **Daily Learning Style Correlation**: 요일별로 학습 스타일의 상관관계를 비교해서, 주중과 주말의 학습 패턴 차이를 파악하고 균형 잡힌 학습 습관을 계획할 수 있게 해줍니다.
+#### 3. Learning Pattern Correlation Analysis (4개 차트)
+9. **Learning Variables Correlation Matrix**: 학습에 영향을 미치는 주요 변수들(학습 복잡도, 표현 길이, 질문 깊이, 시간대) 간의 상관관계를 히트맵으로 보여줘서, 어떤 요소들이 함께 변하는지 한눈에 파악할 수 있게 해줍니다.
+10. **Hourly Learning Pattern Correlation Changes**: 하루 중 시간대별로 표현 길이와 질문 깊이 간의 상관관계가 어떻게 변하는지 추적해서, 최적의 학습 시간대와 패턴 변화를 분석할 수 있게 해줍니다.
+11. **Daily Learning Style Correlation**: 요일별로 학습 스타일의 상관관계를 비교해서, 주중과 주말의 학습 패턴 차이를 파악하고 균형 잡힌 학습 습관을 계획할 수 있게 해줍니다.
+12. **Correlation Strength Distribution & Learning Pattern Analysis**: 전체 데이터에서 상관관계의 강도를 분류하여 분포를 보여줘서, 학습 패턴의 일관성과 예측 가능성을 평가할 수 있게 해줍니다.
 
-4. **Correlation Strength Distribution & Learning Pattern Analysis**: 전체 데이터에서 상관관계의 강도를 분류하여 분포를 보여줘서, 학습 패턴의 일관성과 예측 가능성을 평가할 수 있게 해줍니다.
+### 🔧 모듈 상호작용 시퀀스 (실제 시스템 구조)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant MainExecutor
+    participant DataLoader
+    participant DashboardCreator
+    participant QuestionLevelAnalyzer
+    participant AdvancedCorrelationAnalyzer
+
+    User->>MainExecutor: MainExecutor('../../conversations_parsed.jsonl')
+
+    MainExecutor->>DataLoader: run_data_loader()
+    DataLoader->>DataLoader: load_data() - JSONL 파일 로드
+    DataLoader-->>MainExecutor: 데이터 로드 및 전처리 완료
+
+    MainExecutor->>DashboardCreator: run_dashboard_creation()
+    DashboardCreator->>DataLoader: df = data_loader.data (데이터 공유)
+    DashboardCreator->>DashboardCreator: create_comprehensive_dashboard()
+    DashboardCreator-->>MainExecutor: comprehensive_learning_dashboard.png 생성 (4개 차트)
+
+    MainExecutor->>QuestionLevelAnalyzer: run_question_level_analysis()
+    QuestionLevelAnalyzer->>DataLoader: df = data_loader.data (데이터 공유)
+    QuestionLevelAnalyzer->>QuestionLevelAnalyzer: create_question_level_chart()
+    QuestionLevelAnalyzer-->>MainExecutor: question_level_evolution.png 생성 (4개 차트)
+
+    MainExecutor-->>User: MainExecutor 실행 완료 (2개 PNG 파일)
+
+    User->>AdvancedCorrelationAnalyzer: AdvancedCorrelationAnalyzer('../../conversations_parsed.jsonl') - 별도 실행
+    AdvancedCorrelationAnalyzer->>DataLoader: load_data()
+    DataLoader-->>AdvancedCorrelationAnalyzer: 데이터 로드 완료
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: calculate_correlations()
+    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 상관관계 매트릭스 계산 완료
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: create_correlation_dashboard()
+    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 4개 서브차트 생성 (히트맵, 시간대별, 요일별, 강도분포)
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: plt.savefig('correlation_learning_patterns.png')
+    AdvancedCorrelationAnalyzer-->>User: PNG 파일 저장 완료
+
+    Note over User: 실제 시스템 실행 결과:<br/>MainExecutor: 2개 PNG 파일<br/>AdvancedCorrelationAnalyzer: 1개 PNG 파일<br/>총 3개 PNG 파일 생성<br/>(각각 4개 서브차트 포함)<br/>총 12개 분석 차트
+```
 
 ## 📁 프로젝트 구조
 
@@ -81,50 +136,6 @@ graph TD
     D --> K[강도 분포]
 ```
 
-### 🔧 모듈 상호작용 시퀀스 (실제 시스템 구조)
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant MainExecutor
-    participant DataLoader
-    participant DashboardCreator
-    participant QuestionLevelAnalyzer
-    participant AdvancedCorrelationAnalyzer
-
-    User->>MainExecutor: MainExecutor('../../conversations_parsed.jsonl')
-
-    MainExecutor->>DataLoader: run_data_loader()
-    DataLoader->>DataLoader: load_data() - JSONL 파일 로드
-    DataLoader-->>MainExecutor: 데이터 로드 및 전처리 완료
-
-    MainExecutor->>DashboardCreator: run_dashboard_creation()
-    DashboardCreator->>DataLoader: df = data_loader.data (데이터 공유)
-    DashboardCreator->>DashboardCreator: create_comprehensive_dashboard()
-    DashboardCreator-->>MainExecutor: comprehensive_learning_dashboard.png 생성 (4개 차트)
-
-    MainExecutor->>QuestionLevelAnalyzer: run_question_level_analysis()
-    QuestionLevelAnalyzer->>DataLoader: df = data_loader.data (데이터 공유)
-    QuestionLevelAnalyzer->>QuestionLevelAnalyzer: create_question_level_chart()
-    QuestionLevelAnalyzer-->>MainExecutor: question_level_evolution.png 생성 (4개 차트)
-
-    MainExecutor-->>User: MainExecutor 실행 완료 (2개 PNG 파일)
-
-    User->>AdvancedCorrelationAnalyzer: AdvancedCorrelationAnalyzer('../../conversations_parsed.jsonl') - 별도 실행
-    AdvancedCorrelationAnalyzer->>DataLoader: load_data()
-    DataLoader-->>AdvancedCorrelationAnalyzer: 데이터 로드 완료
-
-    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: calculate_correlations()
-    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 상관관계 매트릭스 계산 완료
-
-    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: create_correlation_dashboard()
-    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 4개 서브차트 생성 (히트맵, 시간대별, 요일별, 강도분포)
-
-    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: plt.savefig('correlation_learning_patterns.png')
-    AdvancedCorrelationAnalyzer-->>User: PNG 파일 저장 완료
-
-    Note over User: 실제 시스템 실행 결과:<br/>MainExecutor: 2개 PNG 파일<br/>AdvancedCorrelationAnalyzer: 1개 PNG 파일<br/>총 3개 PNG 파일 생성<br/>(각각 4개 서브차트 포함)<br/>총 12개 분석 차트
-```
 
 ### 📊 실제 모듈 구조 및 출력
 - **총 모듈 수**: 4개 (DataLoader, DashboardCreator, QuestionLevelAnalyzer, AdvancedCorrelationAnalyzer)
