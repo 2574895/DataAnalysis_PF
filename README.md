@@ -61,6 +61,81 @@ if analyzer.load_data():
 "
 ```
 
+## 🔄 시스템 아키텍처 및 데이터 흐름
+
+### 📊 데이터 처리 플로우
+
+```mermaid
+graph TD
+    A[JSONL 파일 입력] --> B[DataLoader: 데이터 로드]
+    B --> C[AdvancedCorrelationAnalyzer: 초기화]
+    C --> D[calculate_correlations: 상관관계 계산]
+    D --> E[create_correlation_dashboard: 차트 생성]
+
+    E --> F[Figure 1: 4개 차트 생성]
+    F --> G[correlation_learning_patterns.png 저장]
+
+    D --> H[상관관계 매트릭스]
+    D --> I[시간대별 패턴]
+    D --> J[요일별 분석]
+    D --> K[강도 분포]
+```
+
+### 🔧 모듈 상호작용 시퀀스 (실제 시스템 구조)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant MainExecutor
+    participant DataLoader
+    participant DashboardCreator
+    participant QuestionLevelAnalyzer
+    participant AdvancedCorrelationAnalyzer
+
+    User->>MainExecutor: MainExecutor('../../conversations_parsed.jsonl')
+
+    MainExecutor->>DataLoader: run_data_loader()
+    DataLoader->>DataLoader: load_data() - JSONL 파일 로드
+    DataLoader-->>MainExecutor: 데이터 로드 및 전처리 완료
+
+    MainExecutor->>DashboardCreator: run_dashboard_creation()
+    DashboardCreator->>DataLoader: df = data_loader.data (데이터 공유)
+    DashboardCreator->>DashboardCreator: create_comprehensive_dashboard()
+    DashboardCreator-->>MainExecutor: comprehensive_learning_dashboard.png 생성 (4개 차트)
+
+    MainExecutor->>QuestionLevelAnalyzer: run_question_level_analysis()
+    QuestionLevelAnalyzer->>DataLoader: df = data_loader.data (데이터 공유)
+    QuestionLevelAnalyzer->>QuestionLevelAnalyzer: create_question_level_chart()
+    QuestionLevelAnalyzer-->>MainExecutor: question_level_evolution.png 생성 (4개 차트)
+
+    MainExecutor-->>User: MainExecutor 실행 완료 (2개 PNG 파일)
+
+    User->>AdvancedCorrelationAnalyzer: AdvancedCorrelationAnalyzer('../../conversations_parsed.jsonl') - 별도 실행
+    AdvancedCorrelationAnalyzer->>DataLoader: load_data()
+    DataLoader-->>AdvancedCorrelationAnalyzer: 데이터 로드 완료
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: calculate_correlations()
+    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 상관관계 매트릭스 계산 완료
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: create_correlation_dashboard()
+    AdvancedCorrelationAnalyzer-->>AdvancedCorrelationAnalyzer: 4개 서브차트 생성 (히트맵, 시간대별, 요일별, 강도분포)
+
+    AdvancedCorrelationAnalyzer->>AdvancedCorrelationAnalyzer: plt.savefig('correlation_learning_patterns.png')
+    AdvancedCorrelationAnalyzer-->>User: PNG 파일 저장 완료
+
+    Note over User: 실제 시스템 실행 결과:<br/>MainExecutor: 2개 PNG 파일<br/>AdvancedCorrelationAnalyzer: 1개 PNG 파일<br/>총 3개 PNG 파일 생성<br/>(각각 4개 서브차트 포함)<br/>총 12개 분석 차트
+```
+
+### 📊 실제 모듈 구조 및 출력
+- **총 모듈 수**: 4개 (DataLoader, DashboardCreator, QuestionLevelAnalyzer, AdvancedCorrelationAnalyzer)
+- **MainExecutor에서 생성**: 2개 PNG 파일
+  - `comprehensive_learning_dashboard.png` (4개 서브차트)
+  - `question_level_evolution.png` (4개 서브차트)
+- **별도 실행 모듈**: 1개 PNG 파일
+  - `correlation_learning_patterns.png` (4개 서브차트)
+- **프로젝트 총 출력**: 3개 PNG 파일 × 4개 차트 = 12개 분석 차트
+- **실행 방식**: MainExecutor 통합 실행 + AdvancedCorrelationAnalyzer 개별 실행
+
 ### 📁 지원되는 데이터 형식
 
 | 형식 | 설명 | 예시 |
