@@ -118,22 +118,33 @@ if analyzer.load_data():
 
 ## 🔄 시스템 아키텍처 및 데이터 흐름
 
-### 📊 데이터 처리 플로우
+### 📊 데이터 처리 플로우 (전체 시스템)
 
 ```mermaid
 graph TD
-    A[JSONL 파일 입력] --> B[DataLoader: 데이터 로드]
-    B --> C[AdvancedCorrelationAnalyzer: 초기화]
-    C --> D[calculate_correlations: 상관관계 계산]
-    D --> E[create_correlation_dashboard: 차트 생성]
+    A[JSONL 파일 입력] --> B[MainExecutor 실행]
 
-    E --> F[Figure 1: 4개 차트 생성]
-    F --> G[correlation_learning_patterns.png 저장]
+    B --> C[DataLoader: 데이터 로드 및 전처리]
+    C --> D[DashboardCreator: 기본 대시보드 생성]
+    C --> E[QuestionLevelAnalyzer: 질문 분석 수행]
 
-    D --> H[상관관계 매트릭스]
-    D --> I[시간대별 패턴]
-    D --> J[요일별 분석]
-    D --> K[강도 분포]
+    D --> F[comprehensive_learning_dashboard.png<br/>4개 서브차트 생성]
+    E --> G[question_level_evolution.png<br/>4개 서브차트 생성]
+
+    C --> H[AdvancedCorrelationAnalyzer: 상관관계 분석]
+    H --> I[calculate_correlations: 상관관계 계산]
+    I --> J[create_correlation_dashboard: 고급 차트 생성]
+
+    J --> K[correlation_learning_patterns.png<br/>4개 서브차트 생성]
+
+    F --> L[총 3개 PNG 파일<br/>12개 분석 차트]
+    G --> L
+    K --> L
+
+    I --> M[상관관계 매트릭스]
+    I --> N[시간대별 패턴 분석]
+    I --> O[요일별 패턴 분석]
+    I --> P[강도 분포 분석]
 ```
 
 
