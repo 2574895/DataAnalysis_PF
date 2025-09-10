@@ -121,37 +121,33 @@ if analyzer.load_data():
 ### 📊 데이터 처리 플로우 (전체 시스템)
 
 ```mermaid
-graph TD
+graph LR
     A[JSONL 파일 입력] --> B[MainExecutor 실행]
 
-    B --> C[DataLoader: 데이터 로드 및 전처리]
-    C --> D[DashboardCreator: 기본 대시보드 생성]
-    C --> E[QuestionLevelAnalyzer: 질문 분석 수행]
+    B --> C[DataLoader<br/>데이터 로드 및 전처리]
 
-    D --> F[comprehensive_learning_dashboard.png<br/>4개 서브차트 생성]
-    E --> G[question_level_evolution.png<br/>4개 서브차트 생성]
+    C --> D[DashboardCreator<br/>기본 대시보드 생성]
+    C --> E[QuestionLevelAnalyzer<br/>질문 분석 수행]
+    C --> H[AdvancedCorrelationAnalyzer<br/>상관관계 분석]
 
-    C --> H[AdvancedCorrelationAnalyzer: 상관관계 분석]
-    H --> I[calculate_correlations: 상관관계 계산]
+    D --> F[comprehensive_learning_dashboard.png<br/>4개 서브차트]
+    E --> G[question_level_evolution.png<br/>4개 서브차트]
 
-    I --> M[상관관계 매트릭스 생성]
-    I --> N[시간대별 패턴 분석]
-    I --> O[요일별 패턴 분석]
-    I --> P[강도 분포 분석]
+    H --> I[calculate_correlations<br/>상관관계 계산]
 
-    M --> Q[히트맵 차트 생성]
-    N --> R[시간대별 선형 차트 생성]
-    O --> S[요일별 막대 차트 생성]
-    P --> T[강도 분포 차트 생성]
+    I --> M[매트릭스 생성] --> Q[히트맵 차트]
+    I --> N[시간대별 분석] --> R[선형 차트]
+    I --> O[요일별 분석] --> S[막대 차트]
+    I --> P[강도 분석] --> T[분포 차트]
 
-    Q --> J[create_correlation_dashboard: 4개 차트 통합]
+    Q --> J[create_correlation_dashboard<br/>4개 차트 통합]
     R --> J
     S --> J
     T --> J
 
     J --> K[correlation_learning_patterns.png<br/>1개 파일에 4개 서브차트]
 
-    F --> L[총 3개 PNG 파일<br/>12개 분석 차트]
+    F --> L[최종 결과<br/>총 3개 PNG 파일<br/>12개 분석 차트]
     G --> L
     K --> L
 ```
