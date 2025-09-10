@@ -40,45 +40,35 @@ Apple Developer Academy 포트폴리오용 개인화된 학습 패턴 상관관�
 11. **Daily Learning Style Correlation**: 요일별로 학습 스타일의 상관관계를 비교해서, 주중과 주말의 학습 패턴 차이를 파악하고 균형 잡힌 학습 습관을 계획할 수 있게 해줍니다.
 12. **Correlation Strength Distribution & Learning Pattern Analysis**: 전체 데이터에서 상관관계의 강도를 분류하여 분포를 보여줘서, 학습 패턴의 일관성과 예측 가능성을 평가할 수 있게 해줍니다.
 
-```
-
 ### 📊 데이터 처리 플로우 (전체 시스템)
 
 ```mermaid
 graph TD
-    A[JSONL 파일 입력] --> B[MainExecutor 실행]
+    A[JSONL 파일] --> B[MainExecutor]
+    B --> C[DataLoader]
+    C --> D[DashboardCreator]
+    C --> E[QuestionLevelAnalyzer]
+    C --> F[AdvancedCorrelationAnalyzer]
 
-    B --> C[DataLoader<br/>데이터 로드 및 전처리]
+    D --> G[기본 대시보드<br/>4개 차트]
+    E --> H[질문 분석<br/>4개 차트]
 
-    C --> D[DashboardCreator<br/>기본 대시보드 생성]
-    C --> E[QuestionLevelAnalyzer<br/>질문 분석 수행]
-    C --> H[AdvancedCorrelationAnalyzer<br/>상관관계 분석]
+    F --> I[상관관계 계산]
+    I --> J[히트맵 차트]
+    I --> K[시간대별 차트]
+    I --> L[요일별 차트]
+    I --> M[강도 분포 차트]
 
-    D --> F[comprehensive_learning_dashboard.png<br/>4개 서브차트]
-    E --> G[question_level_evolution.png<br/>4개 서브차트]
+    J --> N[차트 통합]
+    K --> N
+    L --> N
+    M --> N
 
-    H --> I[calculate_correlations<br/>상관관계 계산]
+    N --> O[correlation_learning_patterns.png<br/>4개 서브차트]
 
-    I --> M[매트릭스 생성]
-    I --> N[시간대별 분석]
-    I --> O[요일별 분석]
-    I --> P[강도 분석]
-
-    M --> Q[히트맵 차트]
-    N --> R[선형 차트]
-    O --> S[막대 차트]
-    P --> T[분포 차트]
-
-    Q --> J[create_correlation_dashboard<br/>4개 차트 통합]
-    R --> J
-    S --> J
-    T --> J
-
-    J --> K[correlation_learning_patterns.png<br/>1개 파일에 4개 서브차트]
-
-    F --> L[최종 결과<br/>총 3개 PNG 파일<br/>12개 분석 차트]
-    G --> L
-    K --> L
+    G --> P[최종 결과<br/>총 3개 PNG 파일]
+    H --> P
+    O --> P
 ```
 
 ### 🔧 모듈 상호작용 시퀀스 (실제 시스템 구조)
